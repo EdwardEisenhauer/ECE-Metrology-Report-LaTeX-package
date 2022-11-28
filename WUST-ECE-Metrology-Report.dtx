@@ -1,0 +1,164 @@
+% \iffalse meta-comment
+%
+% DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+%
+% Author: Sergiusz Warga <sergiusz.warga@gmail.com>
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{WUST-ECE-Metrology-Report.dtx}
+%</driver>
+%<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+%<package>\ProvidesPackage{WUST-ECE-Metrology-Report}
+%<*package>
+  [2022/11/28 v0.1.0 WUST ECE Metrology Report package]
+%</package>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage[
+  hidelinks,
+  bookmarks,
+  bookmarksopen,
+  bookmarksopenlevel=2,
+  pdftitle={WUST ECE Metrology Report LaTeX package},
+  pdfauthor={Sergiusz Warga}
+]{hyperref}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\setlength\hfuzz{15pt}      % don’t show so many
+\hbadness=7000              % over- and underfull box warnings
+\begin{document}
+  \DocInput{WUST-ECE-Metrology-Report.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \changes{v0.1.0}{2022/11/28}{Initial version}
+%
+% \GetFileInfo{WUST-ECE-Metrology-Report.dtx}
+%
+% \DoNotIndex{\@date, \@title}
+% \DoNotIndex{\\}
+% \DoNotIndex{\begin}
+% \DoNotIndex{\DeclareRobustCommand, \dimexpr, \doublerulesep}
+% \DoNotIndex{\end}
+% \DoNotIndex{\fbox, \fboxrule, \fboxsep}
+% \DoNotIndex{\gdef}
+% \DoNotIndex{\hoffset, \Huge}
+% \DoNotIndex{\Large}
+% \DoNotIndex{\newlength, \newpage, \null}
+% \DoNotIndex{\oddsidemargin}
+% \DoNotIndex{\paperwidth}
+% \DoNotIndex{\renewcommand}
+% \DoNotIndex{\setlength}
+% \DoNotIndex{\textwidth}
+% \DoNotIndex{\uppercase}
+% \DoNotIndex{\vfill}
+%
+% \title{WUST ECE Metrology Report package\thanks
+%   {This document corresponds to \texttt{WUST-ECE-Metrology-Report}~\fileversion,
+%       dated \filedate.}}\author{Sergiusz Warga\texttt{sergiusz.warga@gmail.com}}
+%
+% \maketitle
+%
+% \StopEventually{\PrintChanges \PrintIndex}
+%
+% \section{Implementation}
+%
+% \subsection{Dimentions}
+%
+% Text area.
+%
+%    \begin{macrocode}
+\setlength{\textwidth}{140mm}
+%    \end{macrocode}
+%
+% Center the text area.
+%
+%    \begin{macrocode}
+\setlength{\hoffset}{
+  \dimexpr
+  (\paperwidth-\textwidth)/2-\oddsidemargin-1in
+}
+
+\DeclareRobustCommand*{\reportgroup}[1]{\gdef\@reportgroup{#1}}
+\DeclareRobustCommand*{\studenta}[1]{\gdef\@studenta{#1}}
+\DeclareRobustCommand*{\studentb}[1]{\gdef\@studentb{#1}}
+\DeclareRobustCommand*{\studentc}[1]{\gdef\@studentc{#1}}
+\DeclareRobustCommand*{\reportclassdate}[1]{\gdef\@reportclassdate{#1}}
+\DeclareRobustCommand*{\reportlabassistant}[1]{\gdef\@reportlabassistant{#1}}
+
+\reportgroup{}
+\studenta{}
+\studentb{}
+\studentc{}
+\reportclassdate{}
+\reportlabassistant{}
+\author{\@studenta, \@studentb, \@studentc}
+
+%    \end{macrocode}
+% \DescribeMacro{\maketitle}
+%    \begin{macrocode}
+\renewcommand{\maketitle}{
+\begin{titlepage}
+  \thispagestyle{empty}
+  \newlength\TitleTableWidth
+  \setlength{\TitleTableWidth}{\textwidth} 
+  \newpage
+  \null
+  \begin{center}
+    {\Huge{Wrocław University of Science and Technology}}
+    \vfill
+    {\Large{\uppercase{electrionic measurements\\laboratory report}}}
+    \vfill
+    {\setlength{\fboxrule}{1pt}
+    \setlength{\fboxsep}{1pt}
+    \fbox{%
+      \setlength{\fboxsep}{3pt}%
+      \fbox{%
+        \begin{tabular*}{\textwidth}
+        {p{0.6\TitleTableWidth} p{0.4\TitleTableWidth}}
+        Chair of Electronic and Photonic Metrology\\
+        \uppercase{electrionic measurements laboratory}\\\\
+        Theme of class: \@title \\\\
+        Group no: \@reportgroup\\\\
+        Students: & Date of class: \@reportclassdate\\
+        1. \@studenta\\
+        2. \@studentb\\
+        3. \@studentc & Submission Date: \@date\\\\
+        Lab assistant: \@reportlabassistant\\
+        \end{tabular*}%
+      }%
+    }}
+  \end{center}
+\end{titlepage}
+}
+%    \end{macrocode}
+%
+% \subsection{Page style}
+%
+%    \begin{macrocode}
+\def\ps@metrology{
+  \renewcommand{\@evenhead}{
+    \vbox{
+      \hbox{Metrology\hfill}
+      \vspace{1pt}
+      \hbox{\rule{\textwidth}{0.5pt}\hfill}
+    }
+  }
+  \renewcommand{\@oddhead}{\@evenhead}
+  \renewcommand{\@evenfoot}{
+    \thepage
+  }
+  \renewcommand{\@oddfoot}{\@evenfoot}
+}
+\pagestyle{metrology}
+%    \end{macrocode}
+%
+% \Finale

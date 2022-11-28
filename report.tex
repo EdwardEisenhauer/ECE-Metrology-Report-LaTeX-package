@@ -1,0 +1,48 @@
+\documentclass[a4paper]{article}
+\usepackage{WUST-ECE-Metrology-Report}
+\usepackage{datetime2}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+
+\usepackage[math]{blindtext}
+\usepackage{layout}
+
+\usepackage{siunitx}
+\sisetup{
+  detect-all,     % So that siunitx uses the main font
+  product-units=single, % So that {20 x 20}{\cm} will be 20x20 cm
+  range-phrase=--, % Sets em dash as range separator
+  range-units=single,
+  % output-decimal-marker={,} % Sets coma as a decimal marker (useful for Polish reports)
+}
+
+\title{Resitance Measurements}
+\date{\today}
+\studenta{Jean Dupont}
+\studentb{Erika Mustermann}
+\studentc{Moshe Cohen}
+\reportgroup{1}
+\reportclassdate{2022-11-27}
+\reportlabassistant{Jane Doe}
+
+\makeatletter
+\hypersetup{
+  pdfauthor={\@author},
+  pdftitle={\@title},
+  pdfstartview={Fit}, % Fits the page to the window
+  pdfpagelayout=TwoPageRight, % Displays two pages, odd-numbered pages to the right
+  hidelinks,
+  pdfproducer={XeLateX with hyperref},
+  pdfcreator={Xelatex},
+}
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+\Blinddocument
+
+\layout
+
+\end{document}
